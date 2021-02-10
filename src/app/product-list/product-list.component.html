@@ -1,0 +1,45 @@
+<h2>Products</h2>
+
+<div *ngFor="let product of products"> <!-- the *ngFor is an attribute for repeating the div for each product in the list-->
+
+  <h3>
+    <a [title] = "product.name + ' details'" [routerLink]="['/products', product.id]"> <!-- this sets the title to be the product's name by using the property binding syntax []
+    Property binding lets me use the property value in a template expression.
+    
+    The product name anchor was modified to include a routerLink with the product.id as a parameter. The RouterLink directive helps me 
+    customize the anchor element --> 
+
+
+      {{ product.name }} <!-- this is Angular's interpolation syntax. It lets me render the property value as text -->
+
+
+    </a>
+  </h3>
+
+  <p *ngIf="product.description"> <!-- the *ngIf directive only creates the <p> element
+    if the current product has a description -->
+
+    Description: {{ product.description }}
+    
+  </p>
+
+  <button (click)="share()"> <!-- here we're binding the click event to the share method inside the product-list.component.ts
+  Event binding uses parentheses around the event as in the click event (click) -->
+
+    Share
+
+  </button>
+
+  <!-- this is to display ProductAlertsComponents as a child of ProductListComponent. We add the selector and pass the current product as input to the component using property binding. -->
+  <app-product-alerts
+    [product]="product"
+    (notify)="onNotify()"> <!-- here we call the behavior on product-list.component.ts for the onNotify() -->
+  </app-product-alerts>
+
+</div>
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->

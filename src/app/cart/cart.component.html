@@ -1,0 +1,36 @@
+<h3>Cart</h3>
+
+<p>
+  <a routerLink="/shipping">Shipping Prices</a> <!-- adding a link from the CartComponent view to the ShippingComponent view -->
+</p>
+
+<div class="cart-item" *ngFor="let item of items">
+
+  <span>{{ item.name }}</span>
+  <span>{{ item.price | currency }}</span>
+
+</div>
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()"> <!-- formGroup property binding to bind checkoutForm to the HTML <form>.
+  The ngSubmit event binding is listening for the form submission and call the onSubmit() method with the cehckoutForm value -->
+
+
+  <!-- here we add the input fields for name and address, each with a formControlName attribute that binds to the checkoutForm form controls for name and address to their input fields. -->
+  
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label for="address">
+      Address
+    </label>
+    <input id="address" type="text" formControlName="address">
+  </div>
+
+  <button class="button" tyupe="submit">Purchase</button>
+
+</form>
